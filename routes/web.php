@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/auth/signup', [AuthController::class, 'signupForm'])
+    ->name('auth.signup.form');
+Route::post('/auth/signup', [AuthController::class, 'signupSubmission'])
+    ->name('auth.signup.submit');
+
+Route::get('/auth/signin', [AuthController::class, 'signForm'])
+    ->name('auth.signin.form');
+Route::post('/auth/signin', [AuthController::class, 'signSubmission'])
+    ->name('auth.signin.submit');
+
+Route::get('/auth/success', [AuthController::class, 'successPage'])
+    ->name('auth.signin.success');
